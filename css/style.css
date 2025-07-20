@@ -20,7 +20,7 @@
 }
 
 html {
-  scroll-behavior: smooth; /* smooth scroll for nav links */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -199,7 +199,7 @@ h3 { font-size: 1.8rem; }
 }
 
 /* =======================
-   HERO SECTION (Parallax)
+   HERO SECTION
 ======================= */
 .hero {
   height: 85vh;
@@ -210,7 +210,7 @@ h3 { font-size: 1.8rem; }
   color: #fff;
   text-align: center;
   position: relative;
-  background-attachment: fixed; /* parallax feel */
+  background-attachment: fixed;
 }
 .hero::before {
   content: '';
@@ -260,6 +260,7 @@ h3 { font-size: 1.8rem; }
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: fadeInScale 1s ease forwards;
+  cursor: pointer;
 }
 .room-card:hover {
   transform: translateY(-10px) scale(1.02);
@@ -292,7 +293,78 @@ h3 { font-size: 1.8rem; }
 }
 
 /* =======================
-   ABOUT
+   MODAL PREVIEW
+======================= */
+#imageModal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#imageModal img {
+  max-width: 90%;
+  max-height: 70%;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  animation: fadeIn 0.4s ease;
+}
+
+.modalCaption {
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+  animation: fadeUp 0.5s ease;
+}
+.modalCaption h3 { font-size: 2rem; margin-bottom: 10px; }
+.modalCaption p { font-size: 1rem; color: #ddd; }
+
+.closeModal {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.closeModal:hover {
+  transform: scale(1.2);
+  color: var(--primary-color);
+}
+
+/* Modal navigation arrows */
+.modalPrev,
+.modalNext {
+  position: absolute;
+  top: 50%;
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  user-select: none;
+  transform: translateY(-50%);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.modalPrev { left: 30px; }
+.modalNext { right: 30px; }
+
+.modalPrev:hover,
+.modalNext:hover {
+  background: rgba(0,0,0,0.7);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* =======================
+   CONTACT + ABOUT
 ======================= */
 .bg-light { background-color: var(--secondary-color); }
 .about-content {
@@ -314,9 +386,6 @@ h3 { font-size: 1.8rem; }
 .about-content div { flex: 2; min-width: 300px; }
 .about-content p { margin-bottom: 1rem; color: #444; }
 
-/* =======================
-   CONTACT
-======================= */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -334,58 +403,6 @@ h3 { font-size: 1.8rem; }
 }
 .contact-info:hover, .contact-form-container:hover {
   transform: translateY(-5px);
-}
-.contact-info h3 {
-  margin-bottom: 1.5rem;
-  color: var(--primary-color);
-}
-.contact-info p {
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  color: #444;
-}
-.contact-info p i {
-  margin-right: 10px;
-  color: var(--primary-color);
-  font-size: 1.2rem;
-}
-.social-links {
-  margin-top: 2rem;
-  display: flex;
-  gap: 15px;
-}
-.social-links a {
-  font-size: 1.8rem;
-  color: var(--dark-color);
-  transition: color var(--transition-speed), transform var(--transition-speed);
-}
-.social-links a:hover {
-  color: var(--primary-color);
-  transform: scale(1.2);
-}
-.form-group {
-  margin-bottom: 1.5rem;
-}
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: var(--dark-color);
-}
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-family: var(--body-font);
-  font-size: 1rem;
-  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-}
-.form-group input:focus, .form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 8px rgba(162,123,92,0.3);
 }
 
 /* =======================
@@ -465,6 +482,7 @@ h3 { font-size: 1.8rem; }
   .about-content { flex-direction: column; text-align: center; }
   .about-content img { width: 100%; }
   .contact-grid { grid-template-columns: 1fr; }
+  .modalPrev, .modalNext { font-size: 2.2rem; }
 }
 
 @media (max-width: 480px) {
@@ -474,48 +492,5 @@ h3 { font-size: 1.8rem; }
   .section-title { font-size: 2rem; }
   .section-subtitle { font-size: 1rem; }
   .btn { padding: 10px 20px; font-size: 0.9rem; }
-}
-/* Modal Preview */
-#imageModal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-}
-
-#imageModal img {
-  max-width: 90%;
-  max-height: 70%;
-  border-radius: var(--border-radius);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  animation: fadeIn 0.4s ease;
-}
-
-.modalCaption {
-  color: #fff;
-  text-align: center;
-  margin-top: 20px;
-  animation: fadeUp 0.5s ease;
-}
-
-.modalCaption h3 { font-size: 2rem; margin-bottom: 10px; }
-.modalCaption p { font-size: 1rem; color: #ddd; }
-
-.closeModal {
-  position: absolute;
-  top: 20px; right: 30px;
-  font-size: 2.5rem;
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.closeModal:hover {
-  transform: scale(1.2);
-  color: var(--primary-color);
+  .modalPrev, .modalNext { font-size: 2rem; }
 }
