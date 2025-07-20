@@ -31,7 +31,7 @@
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content hidden">
-      <h2>Your Perfect Getaway Awaits</h2>
+      <h2>Welcome to Cozy Glick - home stay</h2>
       <p>Experience tranquility and comfort at Cozy Glick Homestay.</p>
       <a href="#rooms" class="btn btn-secondary">Explore Rooms</a>
     </div>
@@ -45,7 +45,10 @@
 
       <div class="room-grid">
         <div class="room-card hidden">
-          <img src="images/room1.jpeg" alt="Room 1">
+          <img src="images/room1.jpeg" 
+               alt="Room 1" 
+               data-title="Sunrise Suite" 
+               data-desc="A spacious room with a beautiful view, perfect for couples.">
           <div class="room-info">
             <h3>Sunrise Suite</h3>
             <p>A spacious room with a beautiful view, perfect for couples.</p>
@@ -54,7 +57,10 @@
           </div>
         </div>
         <div class="room-card hidden">
-          <img src="images/room2.jpeg" alt="Room 2">
+          <img src="images/room2.jpeg" 
+               alt="Room 2" 
+               data-title="Garden Retreat" 
+               data-desc="Wake up to the fresh air and lush greenery just outside your window.">
           <div class="room-info">
             <h3>Garden Retreat</h3>
             <p>Wake up to the fresh air and lush greenery just outside your window.</p>
@@ -63,7 +69,10 @@
           </div>
         </div>
         <div class="room-card hidden">
-          <img src="images/room3.jpeg" alt="Room 3">
+          <img src="images/room3.jpeg" 
+               alt="Room 3" 
+               data-title="Tranquil Nook" 
+               data-desc="A serene and cozy corner, ideal for a peaceful solo escape.">
           <div class="room-info">
             <h3>Tranquil Nook</h3>
             <p>A serene and cozy corner, ideal for a peaceful solo escape.</p>
@@ -72,7 +81,10 @@
           </div>
         </div>
         <div class="room-card hidden">
-          <img src="images/room4.jpeg" alt="Room 4">
+          <img src="images/room4.jpeg" 
+               alt="Room 4" 
+               data-title="Harmony Haven" 
+               data-desc="Designed for comfort, this room offers a harmonious stay for small families.">
           <div class="room-info">
             <h3>Harmony Haven</h3>
             <p>Designed for comfort, this room offers a harmonious stay for small families.</p>
@@ -148,7 +160,19 @@
   <!-- Back to Top Button -->
   <button id="backToTop">↑</button>
 
-  <!-- Scroll + Menu JS -->
+  <!-- Modal Preview -->
+  <div id="imageModal">
+    <span class="closeModal">&times;</span>
+    <span class="modalPrev">&#10094;</span>
+    <img id="modalImg" src="" alt="Room Preview">
+    <span class="modalNext">&#10095;</span>
+    <div class="modalCaption">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  <!-- JS -->
   <script>
     // Hamburger toggle
     document.querySelector('.hamburger-menu').addEventListener('click', function () {
@@ -177,6 +201,53 @@
       }
     });
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Room image modal + carousel
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeModal = document.querySelector('.closeModal');
+    const prevBtn = document.querySelector('.modalPrev');
+    const nextBtn = document.querySelector('.modalNext');
+
+    const roomImages = Array.from(document.querySelectorAll('.room-card img'));
+    let currentIndex = 0;
+
+    function openModal(index) {
+      currentIndex = index;
+      const img = roomImages[currentIndex];
+      modal.style.display = 'flex';
+      modalImg.src = img.src;
+      modalTitle.textContent = img.dataset.title;
+      modalDesc.textContent = img.dataset.desc;
+    }
+
+    roomImages.forEach((img, index) => {
+      img.addEventListener('click', () => openModal(index));
+    });
+
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+    prevBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + roomImages.length) % roomImages.length;
+      openModal(currentIndex);
+    });
+    nextBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % roomImages.length;
+      openModal(currentIndex);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (modal.style.display === 'flex') {
+        if (e.key === 'ArrowLeft') prevBtn.click();
+        if (e.key === 'ArrowRight') nextBtn.click();
+        if (e.key === 'Escape') closeModal.click();
+      }
+    });
   </script>
 </body>
 </html>
