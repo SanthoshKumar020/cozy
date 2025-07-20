@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Glick - Homestay Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1 class="logo">Cozy Glick</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#rooms">Rooms</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" class="btn btn-primary">Book Now</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Your Perfect Getaway Awaits</h2>
+            <p>Experience tranquility and comfort at Cozy Glick Homestay.</p>
+            <a href="#rooms" class="btn btn-secondary">Explore Rooms</a>
+        </div>
+    </section>
+
+    <section id="rooms" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Our Cozy Rooms</h2>
+            <p class="section-subtitle text-center">Each room offers a unique blend of comfort and elegance for just ₹2500 per night.</p>
+
+            <div class="room-grid">
+                <div class="room-card">
+                    <img src="images/room1.jpeg" alt="Room 1">
+                    <div class="room-info">
+                        <h3>Sunrise Suite</h3>
+                        <p>A spacious room with a beautiful view, perfect for couples.</p>
+                        <p class="price">₹2500 / night</p>
+                        <a href="#" class="btn btn-small">Book Now</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="images/room2.jpeg" alt="Room 2">
+                    <div class="room-info">
+                        <h3>Garden Retreat</h3>
+                        <p>Wake up to the fresh air and lush greenery just outside your window.</p>
+                        <p class="price">₹2500 / night</p>
+                        <a href="#" class="btn btn-small">Book Now</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="images/room3.jpeg" alt="Room 3">
+                    <div class="room-info">
+                        <h3>Tranquil Nook</h3>
+                        <p>A serene and cozy corner, ideal for a peaceful solo escape.</p>
+                        <p class="price">₹2500 / night</p>
+                        <a href="#" class="btn btn-small">Book Now</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="images/room4.jpeg" alt="Room 4">
+                    <div class="room-info">
+                        <h3>Harmony Haven</h3>
+                        <p>Designed for comfort, this room offers a harmonious stay for small families.</p>
+                        <p class="price">₹2500 / night</p>
+                        <a href="#" class="btn btn-small">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">About Cozy Glick</h2>
+            <div class="about-content">
+                <img src="images/hero-bg.jpg" alt="Cozy Glick Homestay" class="about-img">
+                <div>
+                    <p>Cozy Glick Homestay is your serene escape from the hustle and bustle. Nestled amidst nature, our homestay offers four beautifully designed rooms, each crafted to provide ultimate comfort and relaxation.</p>
+                    <p>We pride ourselves on personalized service and a warm, welcoming atmosphere. Whether you're seeking a quiet retreat, a romantic getaway, or a base to explore the local attractions, Cozy Glick is the perfect choice.</p>
+                    <p>Our commitment is to ensure you have a memorable and delightful stay, leaving you refreshed and rejuvenated.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Get in Touch</h2>
+            <p class="section-subtitle text-center">We'd love to hear from you!</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Homestay Lane, Serene Valley, India</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@cozyglick.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Send Us a Message</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container text-center">
+            <p>&copy; 2025 Cozy Glick. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for hamburger menu toggle
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
+            document.querySelector('.main-nav ul').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
