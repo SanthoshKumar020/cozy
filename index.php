@@ -1,3 +1,9 @@
+<?php 
+$successMessage = "";
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    $successMessage = "✅ Message Sent Successfully!";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +15,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
   <!-- Header -->
   <header class="main-header">
-    <div class="container">
-      <h1 class="logo">Cozy Glick</h1>
+    <div class="container header-flex">
+      <div class="logo-wrapper">
+        <img src="images/varkala.png" alt="Cozy Glick Logo" class="site-logo">
+      </div>
       <nav class="main-nav">
         <ul>
           <li><a href="#home">Home</a></li>
@@ -45,6 +54,7 @@
       <p class="section-subtitle text-center hidden">Each room offers a unique blend of comfort and elegance for just ₹2500 per night.</p>
 
       <div class="room-grid">
+        <!-- Room Cards -->
         <div class="room-card hidden">
           <img src="images/room1.jpeg" alt="Sunrise Suite" data-title="Sunrise Suite" data-desc="A spacious room with a beautiful view, perfect for couples.">
           <div class="room-info">
@@ -54,6 +64,7 @@
             <a href="#" class="btn btn-small">Book Now</a>
           </div>
         </div>
+
         <div class="room-card hidden">
           <img src="images/room2.jpeg" alt="Garden Retreat" data-title="Garden Retreat" data-desc="Wake up to the fresh air and lush greenery just outside your window.">
           <div class="room-info">
@@ -63,6 +74,7 @@
             <a href="#" class="btn btn-small">Book Now</a>
           </div>
         </div>
+
         <div class="room-card hidden">
           <img src="images/room3.jpeg" alt="Tranquil Nook" data-title="Tranquil Nook" data-desc="A serene and cozy corner, ideal for a peaceful solo escape.">
           <div class="room-info">
@@ -72,6 +84,7 @@
             <a href="#" class="btn btn-small">Book Now</a>
           </div>
         </div>
+
         <div class="room-card hidden">
           <img src="images/room4.jpeg" alt="Harmony Haven" data-title="Harmony Haven" data-desc="Designed for comfort, this room offers a harmonious stay for small families.">
           <div class="room-info">
@@ -146,9 +159,11 @@
             <a href="#"><i class="fab fa-twitter"></i></a>
           </div>
         </div>
+
+        <!-- ✅ CONTACT FORM -->
         <div class="contact-form-container">
           <h3>Send Us a Message</h3>
-          <form class="contact-form">
+          <form class="contact-form" action="sendMail.php" method="POST">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
@@ -163,6 +178,10 @@
             </div>
             <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
+
+          <?php if (!empty($successMessage)) { ?>
+            <p class="form-status" style="color:green;"><?= $successMessage ?></p>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -175,8 +194,10 @@
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
-  <button id="backToTop">↑</button>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919944447110?text=Hello%20Cozy%20Glick!%20I%20want%20to%20book%20a%20room." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <!-- Modal Viewer -->
   <div id="imageModal">
@@ -190,14 +211,13 @@
     <span class="modalNext">&#10095;</span>
   </div>
 
-  <!-- Scroll + Modal JS -->
   <script>
     // Hamburger toggle
     document.querySelector('.hamburger-menu').addEventListener('click', function () {
       document.querySelector('.main-nav').classList.toggle('active');
     });
 
-    // Scroll-trigger fade-in
+    // Scroll fade-in
     const hiddenElements = document.querySelectorAll('.hidden');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -209,15 +229,7 @@
     }, { threshold: 0.2 });
     hiddenElements.forEach(el => observer.observe(el));
 
-    // Back-to-top button
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) backToTop.classList.add('show');
-      else backToTop.classList.remove('show');
-    });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // Modal for Rooms & Gallery images
+    // Modal
     const modal = document.getElementById("imageModal");
     const modalImg = document.querySelector(".modalImage");
     const modalTitle = document.getElementById("modalTitle");
@@ -225,7 +237,6 @@
     const closeModal = document.querySelector(".closeModal");
     const prevBtn = document.querySelector(".modalPrev");
     const nextBtn = document.querySelector(".modalNext");
-
     const allPreviewImages = document.querySelectorAll(".room-card img, .gallery-card img");
     let currentIndex = 0;
 

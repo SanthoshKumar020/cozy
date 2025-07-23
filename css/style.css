@@ -630,3 +630,47 @@ h3 { font-size: 1.8rem; }
 .gallery-card:hover img {
   transform: scale(1.05);
 }
+/* Logo + Header */
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.site-logo {
+  height: 50px; /* adjust size */
+  width: auto;
+}
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 28px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background: #20b558;
+}
